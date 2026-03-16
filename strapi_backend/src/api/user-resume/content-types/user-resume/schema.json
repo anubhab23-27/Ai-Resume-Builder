@@ -62,6 +62,11 @@
     },
     "themeColor": {
       "type": "string"
+    },
+    "project": {
+      "type": "component",
+      "component": "project.project",
+      "repeatable": true
     }
   }
 }

@@ -33,6 +33,18 @@ export interface ExperienceExperience extends Struct.ComponentSchema {
   };
 }
 
+export interface ProjectProject extends Struct.ComponentSchema {
+  collectionName: 'components_project_projects';
+  info: {
+    displayName: 'Project';
+    icon: 'bulletList';
+  };
+  attributes: {
+    project_description: Schema.Attribute.Text;
+    project_title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -112,6 +124,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'education.education': EducationEducation;
       'experience.experience': ExperienceExperience;
+      'project.project': ProjectProject;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;

@@ -211,6 +211,8 @@ function Experience({ onNoExperience, onHasExperience, setEnableNext }) {
                       <RichTextEditor
                         index={index}
                         defaultValue={item?.workSummery}
+                        titleField="title"
+                        section="experience"
                         onRichTextEditorChange={(event) =>
                           handleRichTextEditor(event, "workSummery", index)
                         }

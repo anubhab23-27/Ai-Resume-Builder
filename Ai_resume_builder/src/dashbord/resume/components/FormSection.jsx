@@ -8,6 +8,7 @@ import Education from "./forms/Education";
 import Skills from "./forms/Skills";
 import { Navigate, useParams } from "react-router-dom";
 import ThemeColor from "./ThemeColor";
+import Project from "./forms/Project";
 
 function FormSection() {
   const [activeFormIndex, setActiveFormIndex] = useState(1);
@@ -33,7 +34,7 @@ function FormSection() {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <ThemeColor/>
+        <ThemeColor />
         <div className="flex gap-2">
           {activeFormIndex > 1 && (
             <Button
@@ -67,13 +68,14 @@ function FormSection() {
           setEnableNext={handleEnableNext}
         />
       ) : activeFormIndex == 4 ? (
-        <Education />
+        <Project/>
       ) : activeFormIndex == 5 ? (
-        <Skills />
+        <Education />
       ) : activeFormIndex == 6 ? (
+        <Skills />
+      ) : activeFormIndex == 7 ? (
         <Navigate to={"/my-resume/" + params.resumeid + "/view"} />
       ) : null}
-
     </div>
   );
 }

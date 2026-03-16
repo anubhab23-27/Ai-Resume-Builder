@@ -19,28 +19,35 @@ import { Brain, LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 const PROMPT =
   "Position title: {positionTitle}. Give me 5-7 resume bullet points only in pure HTML <ul><li> format. Do NOT return JSON. Do NOT wrap in quotes. Return only HTML.";
-function RichTextEditor({ onRichTextEditorChange, index, defaultValue }) {
+function RichTextEditor({
+  onRichTextEditorChange,
+  index,
+  defaultValue,
+  titleField,
+  section
+}){
   const [value, setValue] = useState(defaultValue);
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
   const [loading, setLoading] = useState(false);
 
-  const GenerateSummeryFromAI = async () => {
-    if (!resumeInfo?.experience[index]?.title) {
-      toast("Please Add Position Title");
-      return;
-    }
-    setLoading(true);
-    const prompt = PROMPT.replace(
-      "{positionTitle}",
-      resumeInfo.experience[index].title,
-    );
+const GenerateSummeryFromAI = async () => {
+  const title = resumeInfo?.[section]?.[index]?.[titleField];
 
-    const result = await AIChatSession.sendMessage(prompt);
-    console.log(result.response.text());
-    const resp = result.response.text();
-    setValue(resp.replace("[", "").replace("]", ""));
-    setLoading(false);
-  };
+  if (!title) {
+    toast("Please Add Title");
+    return;
+  }
+
+  setLoading(true);
+
+  const prompt = PROMPT.replace("{positionTitle}", title);
+
+  const result = await AIChatSession.sendMessage(prompt);
+  const resp = result.response.text();
+
+  setValue(resp.replace("[", "").replace("]", ""));
+  setLoading(false);
+};
 
   return (
     <div>

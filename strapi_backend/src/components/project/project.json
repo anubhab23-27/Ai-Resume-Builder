@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_project_projects",
+  "info": {
+    "displayName": "Project",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "project_title": {
+      "type": "string"
+    },
+    "project_description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}
