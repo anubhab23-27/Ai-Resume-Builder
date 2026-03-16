@@ -12,7 +12,23 @@ import ThemeColor from "./ThemeColor";
 function FormSection() {
   const [activeFormIndex, setActiveFormIndex] = useState(1);
   const [enableNext, setEnableNext] = useState(false);
+  const [noExperience, setNoExperience] = useState(false);
   const params = useParams();
+
+  const handleNoExperience = () => {
+    setNoExperience(true);
+    setEnableNext(true);
+    setActiveFormIndex(4); // skip to Education
+  };
+
+  const handleHasExperience = () => {
+    setNoExperience(false);
+    setEnableNext(true);
+  };
+
+  const handleEnableNext = (value) => {
+    setEnableNext(value);
+  };
 
   return (
     <div>
@@ -45,7 +61,11 @@ function FormSection() {
       ) : activeFormIndex == 2 ? (
         <Summery enableNext={(v) => setEnableNext(v)} />
       ) : activeFormIndex == 3 ? (
-        <Experience />
+        <Experience
+          onNoExperience={handleNoExperience}
+          onHasExperience={handleHasExperience}
+          setEnableNext={handleEnableNext}
+        />
       ) : activeFormIndex == 4 ? (
         <Education />
       ) : activeFormIndex == 5 ? (
@@ -54,13 +74,6 @@ function FormSection() {
         <Navigate to={"/my-resume/" + params.resumeid + "/view"} />
       ) : null}
 
-      {/* Summery */}
-
-      {/* Professional details */}
-
-      {/* Education */}
-
-      {/* Skills */}
     </div>
   );
 }
