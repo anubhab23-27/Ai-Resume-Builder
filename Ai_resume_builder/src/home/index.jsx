@@ -8,7 +8,25 @@ function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden">
       <Header />
-      <Spline scene="https://prod.spline.design/9UMo3gB8SmA6EKEG/scene.splinecode" />
+
+      {/* Mobile Gradient Background */}
+      <div className="mobile-gradient"></div>
+
+      {/* Hero Content (ONLY mobile) */}
+      <div className="hero-content">
+        <h1 className="hero-title">
+          Build Your Professional <br /> Resume with AI
+        </h1>
+        <p className="hero-subtitle">
+          Create job-ready resumes in minutes using AI-generated content, modern
+          templates, and instant PDF downloads.
+        </p>
+      </div>
+
+      {/* Desktop Spline */}
+      <div className="home-spline">
+        <Spline scene="https://prod.spline.design/9UMo3gB8SmA6EKEG/scene.splinecode" />
+      </div>
     </div>
   );
 }

@@ -25,24 +25,33 @@ function Dashboard() {
 
 
   return (
-    <div className="p-10 md:px-20 lg:px-32 gradiant h-screen overflow-hidden">
-      <h2 className="font-bold text-3xl">My Resume</h2>
-      <p>Start Creating AI resume to your next job role</p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10 gap-5">
+    <div className="dashboard-container">
+      <h2 className="dashboard-title">My Resume</h2>
+      <p className="dashboard-subtitle">
+        Start Creating AI resume to your next job role
+      </p>
+
+      <div className="dashboard-grid">
         <AddResume />
-        {resumeList.length > 0 &&
-          resumeList.map((resume) => (
-            <ResumeCardItem
-              resume={resume}
-              key={resume.id}
-              refreshData={GetResumeList}
-            />
-          ))}
+        {resumeList.length > 0
+          ? resumeList.map((resume) => (
+              <ResumeCardItem
+                resume={resume}
+                key={resume.id} // keep your original key (better)
+                refreshData={GetResumeList} // keep original function
+              />
+            ))
+          : Array.from({ length: 4 }).map((_, index) => (
+              <div
+                key={index}
+                className="h-[280px] rounded-lg bg-slate-200 animate-pulse"
+              ></div>
+            ))}
       </div>
 
-      <div className="absolute -bottom-20 right-0 w-[620px] pointer-events-none select-none overflow-hidden">
+      {/* <div className="spline-bg">
         <Spline scene="https://prod.spline.design/7ocvPI1GU5J1mmGg/scene.splinecode" />
-      </div>
+      </div> */}
     </div>
   );
 }
