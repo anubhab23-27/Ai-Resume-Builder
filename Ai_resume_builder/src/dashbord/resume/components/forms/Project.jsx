@@ -39,7 +39,10 @@ function Project() {
   };
 
   const AddNewproject = () => {
-    setprojectList([...projectList, formField]);
+    setprojectList([
+  ...projectList,
+  { project_title: "", project_description: "" },
+]);
   };
 
   const Removeproject = () => {
